@@ -1,0 +1,96 @@
+公众号运营技能包 · 7 阶段全流程自动化总纲（V2.0）
+
+本套技能包共 25 个技能，按公众号运营完整生命周期编排为 7 个阶段。
+每个阶段可独立调用，也可按顺序自动走完全流程。带 ★ 的技能为该阶段主执行技能。
+
+━━━━━━━━━━━━━━━━━━━━ 淘宝店AI灵匣 ━━━━━━━━━━━━━━━━━━━━
+
+【S1 账号定位与内容规划】2 个
+  ★ 自媒体运营全能助手 (social-media-operator)
+      定位诊断 → 人设统一 → 账号规划方案
+  ★ content-planner
+      热点趋势分析 → 差异化选题推荐 → 周更内容日历（结构化输出）
+
+【S2 账号养成与竞对订阅】2 个
+  ★ 公众号一键养成 (wechathotpublisher)
+      选题发现 → 草稿组装 → 推送工作流复用
+  ★ 公众号文章订阅 (wechat-subscribe-redfox)
+      竞对/同类账号每日 9 点盯梢 → 文章推送报告
+
+【S3 爆款选题与素材挖掘】6 个
+  ★ 公众号爆款文章搜索 (gzh-explosive-content-detector)
+      按关键词搜索爆款文章 + 趋势数据（红狐接口，支持 30 天自动拓展）
+  ★ 公众号10w+文章提取 (wechat-hot-article-extractor)
+      多数据源提取近期 10w+ 高表现文章
+  ★ 公众号10w+爆文推送 (wechat-10w-hot)
+      每日 1000+ 篇 10w+ 收录 → fetch_hot_articles.py + generate_hot_html.py
+  ★ 公众号文案创作 (wechat-write)
+      关键词检索爆款 → 流量规律分析 → 可发布完整文章
+  ★ 公众号爆款文章生成 (wechat-viral-writer)
+      run.py：爆款标题 10~30 个 / 热点选题 / 情绪驱动 / 带货转化
+  ★ 朋友圈21天营销计划 (wechat21pyq) ［跨阶段支援：选题排期]
+
+【S4 内容创作与润色】7 个
+  ★ 公众号爆款全链路系统 (wechat-article-pro-plus)
+      选题→大纲→爆写→去AI味→配图→排版→封面 全 prompt 链路
+  ★ 公众号爆款文案专家 (wechat-article-style-pro)
+      文案风格化改写 + scripts/rewrite.py 洗稿辅助
+  ★ 公众号文章撰写技能 (wechat-article-v2)
+      信息收集→思路→撰写→排版(format_article.py)→上传草稿箱
+  ★ 公众号长文去AI味 (wechat-article-rewrite)
+      1500-3000 字长文 AI 痕迹清除（开头套话/对仗/鸡汤/排比）
+  ★ 科技公众号写作工作流 (wechat-article-craft)
+      wechat-formatter.py 科技文格式化 + 版式规范
+  ★ 公众号文章三Agent协作 (wechat-article)
+      作者-编辑-读者三角色协作成稿，强化事实核查
+  ★ 公众号爆款文章生成 (wechat-viral-writer) ［跨阶段支援：标题/转化]
+
+【S5 排版配图与发布】7 个
+  ★ 公众号Markdown推送 (wechat-mp-publish)
+      MD→微信HTML(html_renderer.py 已验证)→图片上传→封面永久素材→草稿箱
+  ★ dbs-wechat-html
+      MD→公众号 HTML，15 种内置风格，浏览器全选复制即用
+  ★ 公众号智能配图发布 (wechat-article-gen)
+      wenyan-cli 配图 + 本地图自动传微信 CDN（需即梦/自定义 API key）
+  ★ 公众号自动化发布 (wechat-publisher-auto)
+      配置向导→热点选择→多模型文生图→V5 排版→草稿箱
+  ★ 自媒体发布前诊断 (self-media-pre-publish-analyzer)
+      成稿发布前体检：总分/分项分/最大问题/对标差异/优先修改清单
+  ★ baoyu-post-to-wechat
+      API / Chrome CDP 双通道发布，外链自动转底部引用，多账号
+  ★ 微信自动发送工具 (wechat-sender-pro)
+      GUI 自动化发送文字/图片/文件/批量文件到微信联系人（私域分发）
+
+【S6 私域与同城获客】2 个
+  ★ 同城获客短视频文案 (wechat-video-copy-skill)
+      门店档案 → 批量高转化同城短视频文案（generate_copy.py）
+  ★ 朋友圈21天营销计划 (wechat21pyq)
+      21 天朋友圈内容排期，解决日更焦虑
+
+【S7 数据复盘与增长】1 个 + 复盘支撑
+  ★ 公众号数据复盘 (mp-review)
+      凭证配置→fetch_wechat_data.py 拉取→prepare_review.py 候选索引
+      →AI 语义分析→render_final_report.py 单文件 HTML 报告→validate 校验
+      （只读接口，支持 CSV/XLSX 后台导出数据分析）
+
+━━━━━━━━━━━━━━━━━━━━ 淘宝店AI灵匣 ━━━━━━━━━━━━━━━━━━━━
+
+【全流程自动串联】
+S1 定位规划 → S2 养号订阅 → S3 选题素材 → S4 创作润色 → S5 排版发布
+→ S6 私域获客 → S7 数据复盘 → 复盘结论回流 S3 选题（增长飞轮闭环）
+
+【环境要求】
+· Python 3.8+（本机托管 venv 已装 requests/bs4/openai/pyperclip/pyautogui/win32/volcengine）
+· 公众号发布类技能需配置 WECHAT_APPID / WECHAT_APPSECRET（或红狐/即梦 API key）
+· 红狐数据 API（REDFOX_API_KEY）用于爆款数据检索，未配置时免费接口返回精简数据
+· wechat-sender-pro 需本机微信客户端在线（GUI 自动化）
+
+【质检记录】2026-09-20
+· 体检：25/25 通过（语法/结构/引用/依赖四项）
+· 实测：全部入口脚本可运行；排版三引擎（v2/mp-publish/mp-suite→已剔除）
+· 剔除：wechat-mp-suite（SKILL.md 主工作流引用未打包的 node 脚本）
+· 补充（skillsmp）：baoyu-post-to-wechat / content-planner / dbs-wechat-html
+  / wechat-article / self-media-pre-publish-analyzer
+· 转正（原 _old_stages）：social-media-operator / mp-review
+
+淘宝店：AI灵匣

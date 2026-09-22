@@ -1,0 +1,116 @@
+【所属分类】03_公众号排版制作
+【技能名称】公众号Markdown推送
+【技能标识】wechat-mp-publish
+【功能描述】微信公众号推送工具。将 Markdown 文章推送到公众号草稿箱，支持图片自动上传、封面图永久素材、HTML渲染。触发词：推送公众号、发布公众号、发到微信。
+【详细概述】
+## 功能
+
+1. 自动获取 access_token（支持环境变量配置）
+2. 上传文章中所有图片到微信 CDN
+3. 上传封面图到永久素材
+4. 将 Markdown 渲染为微信 HTML
+5. 创建草稿到公众号草稿箱
+
+## 使用前配置
+
+### 第一步：获取 AppID 和 AppSecret
+
+1. 登录 [微信公众平台](https://mp.weixin.qq.com/)
+2. 进入 **设置与开发 → 基本配置**
+3. 找到 **AppID** 和 **AppSecret**（如未生成，点击"启用"后查看）
+
+### 第二步：配置白名单
+
+1. 在同一页面（**设置与开发 → 基本配置 → 公众号开发者密码**）
+2. 找到 **IP白名单**，将本机 IP 加入白名单
+3. 本机 IP 为：`192.168.0.102`（如需查询公网 IP，请访问 ip.sb 或 ifconfig.me）
+
+### 第三步：配置环境变量
+
+```bash
+export WECHAT_APPID="your_appid"
+export WECHAT_APPSECRET="your_appsecret"
+```
+
+或使用命令行配置：
+
+```bash
+python scripts/config.py <AppID> <AppSecret>
+```
+
+## 使用方式
+
+### 命令行发布
+
+```bash
+python scripts/publish.py \
+  --title "文章标题" \
+  --content "/path/to/article.md" \
+  --author "作者名" \
+  --digest "摘要（不填则自动截取）" \
+  --cover "/path/to/cover.jpg"
+```
+
+## 重要说明
+
+### 个人账号限制
+
+- ✅ **支持**：推送到草稿箱
+- ❌ **不支持**：直接群发、获取公众号数据（阅读量、用户分析等）、调用已发布相关的 API
+- 个人订阅号 API 权限非常有限，如需完整功能需升级为认证服务号
+
+### 其他注意事项
+
+- **content 参数**：推荐传 Markdown 文件路径，脚本会自动读取文件内容
+- **封面用永久素材**：封面图必须用永久素材接口，否则创建草稿会失败
+- **敏感信息**：请勿提交 `config.json` 和 `token_store.json`
+- **图片上传**：所有图片自动上传到微信 CDN，无需手动处理
+
+## API 原理
+
+```
+access_token → 上传图片 → 上传封面 → 创建草稿
+    ↓            ↓           ↓          ↓
+  自动刷新     替换URL    获取media  JSON POST
+```
+
+## 文件结构
+```
+├── SKILL.md
+├── scripts/
+│   ├── config.py
+│   ├── token_manager.py
+│   ├── image_uploader.py
+│   ├── cover_uploader.py
+│   ├── html_renderer.py
+│   ├── html_sanitizer.py
+│   └── publish.py
+├── README.md
+├── VERSION
+├── CHANGELOG.md
+└── .gitignore
+```
+【安装方式】（把 ZIP 拖进对话框，发一句话就装好）
+
+  第 1 步｜上传
+      把本文件夹里的 wechat-mp-publish.zip 直接拖进 AI 对话框（和发图片一样），
+      不用解压、不用找文件夹、不用装任何软件。
+
+  第 2 步｜复制下面这句话，粘贴发送
+
+      「请解压并安装这个技能包：公众号Markdown推送。
+       装好后告诉我安装结果，以及之后怎么调用它。」
+
+  第 3 步｜收到「安装完成」就能用了
+      直接说「使用公众号Markdown推送」，或者干脆直接描述你的需求。
+
+  · 一次装多个：把多个 zip 一起拖进对话框，再发
+    「请把上面这些技能包全部解压安装」。
+  · 不限定哪个 AI：只要你的 AI 支持上传文件、能读写自己的
+    技能目录就能用，不绑定平台或品牌。它要是说不会装，补一句：
+    「把技能包解压后放进你的技能目录，SKILL.md 在第一层即可」。
+  · 装好后不联网也能用；带脚本的技能需要本机有 Python 3.8+。
+
+【使用说明】
+· 本技能包由「淘宝店：AI灵匣」整理提供，安装后即可通过自然语言触发。
+  · 具体功能以技能包内 SKILL.md 为准，如有问题可重新安装。
